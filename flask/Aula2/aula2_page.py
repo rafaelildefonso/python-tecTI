@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return '''
-<!DOCTYPE html>
+  <!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
@@ -491,32 +491,11 @@ def home():
               <div class="workeduc-box">
                 <div class="workeduc-content">
                   <span class="year"
-                    ><i class="bx bx-calendar"></i>2020 - 2021</span
+                    ><i class="bx bx-calendar"></i>2025 - hoje</span
                   >
-                  <h3>Master Degree - University</h3>
+                  <h3>Full Stack - Agência Propagare</h3>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-                    velit consequuntur vitae ea dignissimos voluptate odio labore.
-                  </p>
-                </div>
-                <div class="workeduc-content">
-                  <span class="year"
-                    ><i class="bx bx-calendar"></i>2021 - 2022</span
-                  >
-                  <h3>Master Degree - University</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-                    velit consequuntur vitae ea dignissimos voluptate odio labore.
-                  </p>
-                </div>
-                <div class="workeduc-content">
-                  <span class="year"
-                    ><i class="bx bx-calendar"></i>2022 - 2024</span
-                  >
-                  <h3>Master Degree - University</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-                    velit consequuntur vitae ea dignissimos voluptate odio labore.
+                    Trabalhei como full stack fazendo sistemas completos.
                   </p>
                 </div>
               </div>
@@ -534,32 +513,11 @@ def home():
               <div class="workeduc-box">
                 <div class="workeduc-content">
                   <span class="year"
-                    ><i class="bx bx-calendar"></i>2017 - 2018</span
+                    ><i class="bx bx-calendar"></i>2024 - 2026</span
                   >
-                  <h3>Master Degree - University</h3>
+                  <h3>Tecnico em TI - Colégio Cotemig</h3>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-                    velit consequuntur vitae ea dignissimos voluptate odio labore.
-                  </p>
-                </div>
-                <div class="workeduc-content">
-                  <span class="year"
-                    ><i class="bx bx-calendar"></i>2018 - 2019</span
-                  >
-                  <h3>Master Degree - University</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-                    velit consequuntur vitae ea dignissimos voluptate odio labore.
-                  </p>
-                </div>
-                <div class="workeduc-content">
-                  <span class="year"
-                    ><i class="bx bx-calendar"></i>2019 - 2020</span
-                  >
-                  <h3>Master Degree - University</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-                    velit consequuntur vitae ea dignissimos voluptate odio labore.
+                    Aprendi Tecnologia da Informação.
                   </p>
                 </div>
               </div>
@@ -581,26 +539,18 @@ def home():
                 <div class="services-content">
                   <i class="bx bx-code-alt"></i>
                   <h3>Web Development</h3>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                  <a href="#" class="btn">Read More</a>
                 </div>
                 <div class="services-content">
                   <i class="bx bxs-paint"></i>
                   <h3>Creative Design</h3>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                  <a href="#" class="btn">Read More</a>
                 </div>
                 <div class="services-content">
                   <i class="bx bx-bar-chart-alt"></i>
                   <h3>Digital Marketing</h3>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                  <a href="#" class="btn">Read More</a>
                 </div>
                 <div class="services-content">
                   <i class="bx bx-search"></i>
                   <h3>SEO</h3>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                  <a href="#" class="btn">Read More</a>
                 </div>
               </div>
               <span class="number-page">3</span>
@@ -660,21 +610,19 @@ def home():
                 </div>
                 <div class="info-box">
                   <div class="info-title">
-                    <h3>Project Name</h3>
-                    <a href="#"
+                    <h3>Shelf AI</h3>
+                    <a href="https://shelf-ai.vercel.app"
                       >Live Preview<i class="bx bx-link-external"></i
                     ></a>
                   </div>
                   <p>Tech Used</p>
                   <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. A
-                    saepe ipsam earum nulla dicta inventore ipsum, placeat,
-                    itaque, sint.
+                    React, AI
                   </p>
                 </div>
                 <div class="btn-box">
-                  <a href="#" class="btn">Source Code</a>
-                  <a href="#" class="btn">More Projects</a>
+                  <a href="https://github.com/rafaelildefonso/ShelfAI" class="btn">Source Code</a>
+                  <a href="https://github.com/rafaelildefonso" class="btn">More Projects</a>
                 </div>
               </div>
               <span class="number-page">5</span>
