@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Usuário{% endblock %}
+
+{% block content %}
+    <h1>Dados do Usuário</h1>
+    <ul class="data-list">
+        <li>
+            <span><strong>Nome:</strong></span>
+            <span>{{ usuario.nome }}</span>
+        </li>
+        <li>
+            <span><strong>Email:</strong></span>
+            <span>{{ usuario.email }}</span>
+        </li>
+    </ul>
+{% endblock %}

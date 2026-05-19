@@ -1,0 +1,6 @@
+1 - Crie um template que exiba a mensagem: “Olá, {{ nome }}”.
+2 - Mostre nome e idade.
+3 - Dado usuario = {"nome": "Ana", "email": "ana@email.com"}, exiba os dados.
+4 - Liste nomes de alunos.
+5 - Se a nota for maior ou igual a 7, mostre "Aprovado", caso contrário, "Reprovado".
+

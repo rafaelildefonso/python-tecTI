@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Nomes{% endblock %}
+
+{% block content %}
+    <h1>Nomes dos Alunos</h1>
+    <ul class="data-list">
+        {% for nome in nomes %}
+            <li>{{ nome }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

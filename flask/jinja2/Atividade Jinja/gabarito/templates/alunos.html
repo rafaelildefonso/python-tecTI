@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Nome e Idade{% endblock %}
+
+{% block content %}
+    <h1>Alunos e Idades</h1>
+    <ul class="data-list">
+        {% for aluno in alunos %}
+            <li>
+                <span><strong>{{ aluno.nome }}</strong></span>
+                <span style="color: var(--text-secondary);">Idade: {{ aluno.idade }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
