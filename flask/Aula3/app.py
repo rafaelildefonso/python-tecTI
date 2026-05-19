@@ -11,5 +11,9 @@ def home():
 def sobre(nome):
     return  f'Olá, {nome}! Bem-vindo à página.'
 
+@app.route('/cotemig')
+def sobre(nome):
+    return  f'Olá, {nome}!'
+
 if __name__ == '__main__':
     app.run(debug=True)
