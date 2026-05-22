@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Flow 2 — Home{% endblock %}
+{% block header %}{{ dados.mensagens.fluxo2_titulo }}{% endblock %}
+{% block description %}<p>{{ dados.mensagens.fluxo2_descricao }}</p>{% endblock %}
+
+{% block content %}
+<section class="card">
+    <p>No fluxo 2 a senha não recarrega a página inteira: o <strong>JavaScript</strong> envia um <strong>fetch</strong> para <code>/api/validar-senha</code> e o Flask responde com <strong>jsonify</strong>.</p>
+    <div class="nav-links">
+        <a class="btn" href="{{ url_for('fluxo2_senha') }}">Ir para a senha</a>
+        <a class="btn btn-secondary" href="{{ url_for('index') }}">Voltar</a>
+    </div>
+</section>
+{% endblock %}

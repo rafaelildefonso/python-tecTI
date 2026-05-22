@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Flow 1 — Home{% endblock %}
+{% block header %}{{ dados.mensagens.fluxo1_titulo }}{% endblock %}
+{% block description %}<p>{{ dados.mensagens.fluxo1_descricao }}</p>{% endblock %}
+
+{% block content %}
+<section class="card">
+    <p>No fluxo 1 você navega entre páginas HTML. A senha é enviada com formulário <strong>POST</strong> e o Flask lê com <code>request.form</code>.</p>
+    <div class="nav-links">
+        <a class="btn" href="{{ url_for('fluxo1_senha') }}">Ir para a senha</a>
+        <a class="btn btn-secondary" href="{{ url_for('index') }}">Voltar</a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,16 @@
+{
+  "senhas": {
+    "fluxo1": "aluno2026",
+    "fluxo2": "cotemig"
+  },
+  "site_cotemig": "https://cotemig.com.br/",
+  "mensagens": {
+    "fluxo1_titulo": "Acesso ao sistema",
+    "fluxo1_descricao": "Informe a senha de aluno para continuar.",
+    "fluxo2_titulo": "Portal Cotemig",
+    "fluxo2_descricao": "Senha correta libera o link oficial do site.",
+    "erro_senha": "Senha incorreta. Tente novamente.",
+    "sucesso_fluxo1": "Senha válida! Acesso liberado no fluxo 1.",
+    "sucesso_fluxo2": "Senha válida! Redirecionando para o portal."
+  }
+}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Flow 1 — Password{% endblock %}
+{% block header %}Digite a senha (fluxo 1){% endblock %}
+{% block description %}<p>Senha de demonstração: <code>aluno2026</code></p>{% endblock %}
+
+{% block content %}
+<section class="card">
+    {% if erro %}
+    <div class="alert alert-erro">{{ erro }}</div>
+    {% endif %}
+
+    {% if sucesso %}
+    <div class="alert alert-ok">{{ sucesso }}</div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('fluxo1_senha') }}">
+        <label for="senha">Senha do aluno</label>
+        <input type="password" id="senha" name="senha" placeholder="Senha" required>
+
+        <button type="submit" class="btn">Validar</button>
+    </form>
+
+    <div class="nav-links">
+        <a class="btn btn-secondary" href="{{ url_for('fluxo1_inicio') }}">Voltar</a>
+        <a class="btn btn-secondary" href="{{ url_for('index') }}">Início</a>
+    </div>
+</section>
+{% endblock %}

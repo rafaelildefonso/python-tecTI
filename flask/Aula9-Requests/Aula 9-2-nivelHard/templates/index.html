@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Home — Lesson 9{% endblock %}
+{% block header %}Two ways to request{% endblock %}
+{% block description %}<p>Fluxo 1 usa <strong>request</strong> (formulário). Fluxo 2 usa <strong>fetch</strong> + <strong>jsonify</strong>.</p>{% endblock %}
+
+{% block content %}
+<section class="card">
+    <h2>Fluxo 1 — request (POST)</h2>
+    <p>Página inicial → página de senha → validação no servidor com <code>request.form</code>.</p>
+    <div class="nav-links">
+        <a class="btn" href="{{ url_for('fluxo1_inicio') }}">Iniciar fluxo 1</a>
+    </div>
+</section>
+
+<section class="card">
+    <h2>Fluxo 2 — fetch + jsonify</h2>
+    <p>Página inicial → senha via JavaScript → API JSON → página com link do Cotemig.</p>
+    <div class="nav-links">
+        <a class="btn" href="{{ url_for('fluxo2_inicio') }}">Iniciar fluxo 2</a>
+    </div>
+</section>
+
+<section class="card">
+    <h2>API JSON (demonstração)</h2>
+    <p>Rota <code>/api/info</code> retorna mensagens do arquivo <code>dados.json</code> (sem senhas).</p>
+    <div class="nav-links">
+        <a class="btn btn-secondary" href="{{ url_for('api_info') }}" target="_blank">Ver /api/info</a>
+    </div>
+</section>
+{% endblock %}

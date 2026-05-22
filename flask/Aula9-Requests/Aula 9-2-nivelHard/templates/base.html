@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Lesson 9 — Requests{% endblock %}</title>
+    {# url_for('static', filename='...') → URL do arquivo em static/ (ex: /static/css/style.css) #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{% block cabecalho %}Aula 9 — Flask Requests{% endblock %}</h1>
+            {% block subtitulo %}{% endblock %}
+        </header>
+
+        <main>
+            {% block conteudo %}{% endblock %}
+        </main>
+
+        <footer>
+            {% block rodape %}COTEMIG — jsonify, request e fetch{% endblock %}
+        </footer>
+    </div>
+
+    {# url_for com nome da função da rota: url_for('index'), url_for('fluxo1_senha'), etc. #}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts_extra %}{% endblock %}
+</body>
+</html>

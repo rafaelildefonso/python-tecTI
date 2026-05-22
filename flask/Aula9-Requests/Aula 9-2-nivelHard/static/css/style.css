@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #f0f4f8;
+    color: #1a2a3a;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+header h1 {
+    font-size: 1.4rem;
+    color: #0d47a1;
+}
+
+header p {
+    font-size: 0.95rem;
+    color: #546e7a;
+    margin-top: 0.35rem;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #cfd8dc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.card + .card {
+    margin-top: 1rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+}
+
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #b0bec5;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+input:focus {
+    outline: 2px solid #1976d2;
+    border-color: #1976d2;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.55rem 1rem;
+    background: #1976d2;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #1565c0;
+}
+
+.btn-secondary {
+    background: #607d8b;
+}
+
+.btn-secondary:hover {
+    background: #546e7a;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.alert {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.alert-erro {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+.alert-ok {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+.alert-info {
+    background: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #90caf9;
+}
+
+.link-externo {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-weight: 600;
+    color: #0d47a1;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: #78909c;
+}
+
+.hidden {
+    display: none;
+}

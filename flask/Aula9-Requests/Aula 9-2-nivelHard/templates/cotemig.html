@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Cotemig Portal{% endblock %}
+{% block header %}Acesso liberado{% endblock %}
+{% block description %}<p>{{ dados.mensagens.sucesso_fluxo2 }}</p>{% endblock %}
+
+{% block content %}
+<section class="card">
+    <div class="alert alert-ok">Senha correta! Use o link abaixo para abrir o site oficial.</div>
+
+    <p>Site institucional:</p>
+    <a class="link-externo" href="{{ dados.site_cotemig }}" target="_blank" rel="noopener noreferrer">
+        {{ dados.site_cotemig }}
+    </a>
+
+    <div class="nav-links">
+        <a class="btn btn-secondary" href="{{ url_for('index') }}">Voltar ao início</a>
+    </div>
+</section>
+{% endblock %}
