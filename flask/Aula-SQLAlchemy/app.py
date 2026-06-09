@@ -26,6 +26,7 @@ class Aluno(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), nullable=False)
+    telefone = db.Column(db.String(20), nullable=False)
 
     def __repr__(self):
         return f"<Aluno {self.id} {self.nome}>"
@@ -38,7 +39,7 @@ with app.app_context():
 # --- READ — listar ---
 @app.route("/")
 def index():
-    alunos = Aluno.query.order_by(Aluno.nome).all()
+    alunos = Aluno.query.order_by(Aluno.id.desc()).all()
     return render_template("lista.html", alunos=alunos)
 
 
@@ -48,6 +49,7 @@ def cadastrar():
     if request.method == "POST":
         nome = request.form.get("nome", "").strip()
         email = request.form.get("email", "").strip()
+        telefone = request.form.get("telefone", "").strip()
         if not nome or not email:
             return render_template(
                 "formulario.html",
@@ -55,8 +57,9 @@ def cadastrar():
                 erro="Preencha nome e e-mail.",
                 nome=nome,
                 email=email,
+                telefone=telefone,
             )
-        aluno = Aluno(nome=nome, email=email)
+        aluno = Aluno(nome=nome, email=email, telefone=telefone)
         db.session.add(aluno)
         db.session.commit()
         return redirect(url_for("index"))
@@ -73,6 +76,7 @@ def editar(aluno_id):
     if request.method == "POST":
         nome = request.form.get("nome", "").strip()
         email = request.form.get("email", "").strip()
+        telefone = request.form.get("telefone", "").strip()
         if not nome or not email:
             return render_template(
                 "formulario.html",
@@ -80,10 +84,12 @@ def editar(aluno_id):
                 erro="Preencha nome e e-mail.",
                 nome=nome,
                 email=email,
+                telefone=telefone,
                 aluno_id=aluno.id,
             )
         aluno.nome = nome
         aluno.email = email
+        aluno.telefone = telefone
         db.session.commit()
         return redirect(url_for("index"))
 
@@ -92,6 +98,7 @@ def editar(aluno_id):
         titulo="Editar aluno",
         nome=aluno.nome,
         email=aluno.email,
+        telefone=aluno.telefone,
         aluno_id=aluno.id,
     )
 
