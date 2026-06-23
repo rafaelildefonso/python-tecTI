@@ -50,11 +50,11 @@ def cadastrar():
         nome = request.form.get("nome", "").strip()
         email = request.form.get("email", "").strip()
         telefone = request.form.get("telefone", "").strip()
-        if not nome or not email:
+        if not nome or not email or not telefone:
             return render_template(
                 "formulario.html",
                 titulo="Cadastrar aluno",
-                erro="Preencha nome e e-mail.",
+                erro="Preencha nome, e-mail e telefone.",
                 nome=nome,
                 email=email,
                 telefone=telefone,
@@ -77,11 +77,11 @@ def editar(aluno_id):
         nome = request.form.get("nome", "").strip()
         email = request.form.get("email", "").strip()
         telefone = request.form.get("telefone", "").strip()
-        if not nome or not email:
+        if not nome or not email or not telefone:
             return render_template(
                 "formulario.html",
                 titulo="Editar aluno",
-                erro="Preencha nome e e-mail.",
+                erro="Preencha nome, e-mail e telefone.",
                 nome=nome,
                 email=email,
                 telefone=telefone,
