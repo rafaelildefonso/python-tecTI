@@ -4,7 +4,7 @@
 import os
 from flask import Flask, redirect, url_for
 
-from controllers import cinema_bp
+from controllers import cinema_bp, dashboard_bp
 from models import db
 
 
