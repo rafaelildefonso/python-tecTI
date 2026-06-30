@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from . import db
 
@@ -8,7 +8,13 @@ class Operacao(db.Model):
 
     __tablename__ = "operacoes"
 
-    # crie a tabela e crie um campo para a tabela de datetime o campo deve chamar criado_em
+    id = db.Column(db.Integer, primary_key=True)
+    num1 = db.Column(db.Float, nullable=False)
+    num2 = db.Column(db.Float, nullable=True)
+    operacao = db.Column(db.String(20), nullable=False)
+    etapas = db.Column(db.Text, nullable=False)
+    resultado = db.Column(db.String(100), nullable=False)
+    criado_em = db.Column(db.DateTime, default=datetime.now())
 
     @classmethod
     def salvar(cls, num1, num2, operacao, etapas, resultado):
@@ -19,7 +25,8 @@ class Operacao(db.Model):
             etapas=etapas,
             resultado=str(resultado),
         )
-        # adicione os métodos de adicionar e commit 
+        db.session.add(registro)
+        db.session.commit()
         return registro
 
     @classmethod
