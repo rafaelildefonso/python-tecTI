@@ -5,7 +5,6 @@ from .base import ModeloBase
 class Jogador(ModeloBase):
     __tablename__ = "jogadores"
 
-    id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50), nullable=False)
     posicao = db.Column(db.String(50), nullable=False)
     clube = db.Column(db.String(50), nullable=False)
