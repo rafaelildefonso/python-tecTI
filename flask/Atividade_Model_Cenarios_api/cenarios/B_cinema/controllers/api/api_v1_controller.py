@@ -1,0 +1,98 @@
+from datetime import datetime
+
+from flask import Blueprint, jsonify, request
+
+from models import Filme, Sala, Sessao, db
+from services import TmdbApi
+
+api_v1_bp = Blueprint("api_v1", __name__, url_prefix="/api/v1")
+tmdb = TmdbApi()
+
+
+@api_v1_bp.route("/sessoes", methods=["GET"]) #TODO Qual é a rota?
+def api_listar_sessoes():
+    sessoes = Sessao.listar_com_detalhes()
+    return jsonify([
+        {
+            "id": s.id,
+            "filme": s.filme.titulo,
+            "sala": s.sala.nome,
+            "data_hora": s.data_hora.isoformat(),
+            "preco": s.preco,
+        }
+        for s in sessoes
+    ])
+
+
+@api_v1_bp.route("/sessoes/<int:sessao_id>", methods=["GET"])
+def api_detalhe_sessao(sessao_id):
+    sessao = db.session.get(Sessao, sessao_id)
+    if not sessao:
+        return jsonify({"erro": "Sessão não encontrada"}), 404
+    return jsonify({
+        "id": sessao.id,
+        "filme": sessao.filme.titulo,
+        "sala": sessao.sala.numero,
+        "ingressos": sessao.ingressos,
+        "preco": sessao.preco,
+       #TODO Continue
+    })
+
+
+@api_v1_bp.route("/sessoes", methods=["POST"])
+def api_criar_sessao():
+    dados = request.get_json()
+    if not dados:
+        return jsonify({"erro": "Envie JSON no body"}), 400
+    try:
+        sessao = Sessao(
+            filme_id=int(dados["filme_id"]),
+            sala_id=int(dados["sala_id"]),
+            data_hora=datetime.fromisoformat(dados["data_hora"]),
+            preco=float(dados["preco"]),
+        )
+    except (KeyError, ValueError):
+        return jsonify({"erro": "Campos inválidos"}), 400
+    db.session.add(sessao)
+    db.session.commit()
+    return jsonify({"id": sessao.id, "mensagem": "Sessão criada"}), 201#TODO QUAL É O STATUS CODE PARA UMA SESSÃO CRIADA COM SUCESSO?
+
+
+@api_v1_bp.route("/filmes", methods=["GET"])
+def api_listar_filmes():
+    return jsonify([
+        {"id": f.id, "titulo": f.titulo, "duracao_min": f.duracao_min, "classificacao": f.classificacao}
+        for f in Filme.listar()
+    ])
+
+
+@api_v1_bp.route("/salas", methods=["GET"])
+def api_listar_salas():
+    return jsonify([
+        {"id": s.id, "numero": s.numero, "capacidade": s.capacidade}
+        for s in Sala.listar()
+    ])
+
+
+@api_v1_bp.route("/externo/filmes/buscar", methods=["GET"])
+def api_buscar_tmdb():
+    termo = request.args.get("q", "") #TODO responda por que estamos utilizando o request.args.get? R: para pegar as respostas do formulario
+    filmes, demo = tmdb.buscar(termo)
+    return jsonify({
+        "termo": termo,
+        "fonte": "TMDB (demo)" if demo else "TMDB",
+        "resultados": filmes,
+    })
+
+
+@api_v1_bp.route("/externo/filmes/populares", methods=["GET"])
+def api_populares_tmdb():
+    filmes, demo = tmdb.populares()
+    return jsonify({
+        "fonte": "TMDB (demo)" if demo else "TMDB",
+        "resultados": filmes,
+    })
+
+@api_v1_bp.route("/status", methods=["GET"])
+def status():
+    return jsonify({"status": "API está funcionando"}), 200
