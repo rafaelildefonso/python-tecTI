@@ -1,0 +1,38 @@
+:root {
+  --cor-pendente: #ffc107;
+  --cor-em-andamento: #0d6efd;
+  --cor-concluida: #198754;
+}
+
+/* ________________________ Cards de tarefas ________________________ */
+.tarefa-card {
+  border-left: 6px solid var(--bs-secondary);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tarefa-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.tarefa-card .card-text {
+  white-space: pre-line;
+  min-height: 3rem;
+}
+
+.tarefa-card.status-pendente {
+  border-left-color: var(--cor-pendente);
+}
+
+.tarefa-card.status-em-andamento {
+  border-left-color: var(--cor-em-andamento);
+}
+
+.tarefa-card.status-concluida {
+  border-left-color: var(--cor-concluida);
+}
+
+/* ________________________ Feedback ________________________ */
+.toast-container {
+  z-index: 1100;
+}

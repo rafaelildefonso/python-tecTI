@@ -1,0 +1,31 @@
+{% macro card_tarefa(tarefa, status_info) %}
+  {% set info = status_info.get(tarefa.status, status_info['pendente']) %}
+  <div class="col-md-6 col-xl-4">
+    <div class="card tarefa-card h-100 {{ info.classe }}">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h2 class="h6 card-title mb-0 text-truncate" title="{{ tarefa.titulo }}">{{ tarefa.titulo }}</h2>
+        <span class="badge {{ info.badge }}">{{ info.rotulo }}</span>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{ tarefa.descricao or 'Sem descrição.' }}</p>
+      </div>
+      <div class="card-footer bg-transparent d-flex justify-content-end gap-2">
+        {% if tarefa.status != 'concluida' %}
+          <form class="form-concluir" action="{{ url_for('concluir_tarefa', tarefa_id=tarefa.id) }}" method="post" data-id="{{ tarefa.id }}">
+            <button type="submit" class="btn btn-sm btn-outline-success" title="Concluir">
+              <i class="bi bi-check-lg"></i>
+            </button>
+          </form>
+        {% endif %}
+        <a href="{{ url_for('editar_tarefa', tarefa_id=tarefa.id) }}" class="btn btn-sm btn-outline-primary" title="Editar">
+          <i class="bi bi-pencil"></i>
+        </a>
+        <form class="form-excluir" action="{{ url_for('excluir_tarefa', tarefa_id=tarefa.id) }}" method="post" data-id="{{ tarefa.id }}">
+          <button type="submit" class="btn btn-sm btn-outline-danger" title="Excluir">
+            <i class="bi bi-trash"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
