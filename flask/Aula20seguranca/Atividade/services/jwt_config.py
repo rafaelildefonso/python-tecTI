@@ -28,15 +28,16 @@ def carregar_usuario(_jwt_header, jwt_data):
 
 @jwt.additional_claims_loader
 def claims_extras(identity):
-    # TODO(segurança): o claim papel não entra no token. Admin nunca consegue
-    # ser reconhecido pelo payload. Devolva {"papel": ..., "nome": ...}.
+    usuario = Usuario.query.filter_by(id=identity).one_or_none()
+    if usuario:
+        return {"papel": usuario.papel, "nome": usuario.nome}
     return {}
 
 
 @jwt.token_in_blocklist_loader
 def token_esta_na_blocklist(_jwt_header, jwt_payload: dict) -> bool:
-    # TODO(segurança): sempre False = logout não funciona. Consulte TokenRevogado.
-    return False
+    jti = jwt_payload.get("jti")
+    return TokenRevogado.esta_revogado(jti)
 
 
 @jwt.expired_token_loader

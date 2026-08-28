@@ -1,5 +1,7 @@
 # ATIVIDADE — Model inseguro. Arrume senha, papel no cadastro e o que vai no JSON.
 
+from werkzeug.security import check_password_hash, generate_password_hash
+
 from . import db
 from .base import ModeloBase
 
@@ -18,12 +20,10 @@ class Usuario(ModeloBase):
     papel = db.Column(db.String(20), nullable=False, default="visitante")
 
     def definir_senha(self, senha: str) -> None:
-        # TODO(segurança): não grave a senha crua.
-        self.senha = senha
+        self.senha = generate_password_hash(senha)
 
     def senha_confere(self, senha: str) -> bool:
-        # TODO(segurança): comparar com hash (check_password_hash), não == .
-        return self.senha == senha
+        return check_password_hash(self.senha, senha)
 
     @classmethod
     def buscar_por_username(cls, username: str):
@@ -39,8 +39,7 @@ class Usuario(ModeloBase):
             username = str(dados["username"]).strip().lower()
             nome = str(dados.get("nome") or username).strip()
             senha = str(dados["senha"])
-            # TODO(segurança): o cliente NÃO pode escolher papel=admin.
-            papel = str(dados.get("papel") or "visitante")
+            papel = "visitante"
         except (KeyError, TypeError) as erro:
             raise ValueError("Campos obrigatórios: username e senha") from erro
 
@@ -52,12 +51,10 @@ class Usuario(ModeloBase):
         return usuario
 
     def para_dict(self) -> dict:
-        # TODO(segurança): NUNCA devolva a senha no JSON.
         return {
             "id": self.id,
             "username": self.username,
             "nome": self.nome,
             "papel": self.papel,
-            "senha": self.senha,
             "data_criacao": str(self.data_criacao),
         }

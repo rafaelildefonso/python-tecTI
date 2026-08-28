@@ -29,9 +29,8 @@ def emitir_tokens(usuario: Usuario, fresh: bool = True) -> dict:
 
 
 def autenticar(username: str, senha: str) -> Usuario:
-    # TODO(segurança): hoje entra SÓ com o username, sem conferir a senha.
     usuario = Usuario.buscar_por_username((username or "").strip().lower())
-    if not usuario:
+    if not usuario or not usuario.senha_confere(senha):
         raise ValueError("username ou senha incorretos")
     return usuario
 
@@ -44,29 +43,36 @@ def registrar(dados: dict) -> Usuario:
 
 
 def renovar_access(usuario: Usuario) -> dict:
-    # TODO(segurança): refresh NÃO pode gerar token fresh. Use fresh=False.
-    access_token = create_access_token(identity=usuario, fresh=True)
+    access_token = create_access_token(identity=usuario, fresh=False)
     return {
         "access_token": access_token,
         "token_type": "Bearer",
-        "fresh": True,
+        "fresh": False,
         "usuario": usuario.para_dict(),
     }
 
 
 def revogar_jwt_atual() -> dict:
-    # TODO(segurança): logout de mentira — não grava o jti na blocklist.
     payload = get_jwt()
+    jti = payload.get("jti")
+    tipo = payload.get("type")
+    usuario_id = payload.get("sub")
+    
+    token_revogado = TokenRevogado(jti=jti, tipo=tipo, usuario_id=usuario_id)
+    db.session.add(token_revogado)
+    db.session.commit()
+    
     return {
-        "mensagem": "Logout fake: o token continua válido",
-        "jti": payload.get("jti"),
-        "tipo": payload.get("type"),
+        "mensagem": "Logout realizado. Token revogado.",
+        "jti": jti,
+        "tipo": tipo,
     }
 
 
 def trocar_senha(usuario: Usuario, senha_atual: str, senha_nova: str) -> None:
-    # TODO(segurança): troca a senha SEM conferir a senha atual.
-    usuario.definir_senha(senha_nova or "123")
+    if not usuario.senha_confere(senha_atual):
+        raise ValueError("Senha atual incorreta")
+    usuario.definir_senha(senha_nova)
     db.session.commit()
 
 

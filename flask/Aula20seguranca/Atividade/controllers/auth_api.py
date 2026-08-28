@@ -44,25 +44,25 @@ def login() -> Any:
 
 
 @auth_api_bp.route("/refresh", methods=["POST"])
-# TODO(segurança): só o refresh_token pode entrar aqui → @jwt_required(refresh=True)
+@jwt_required(refresh=True)
 def refresh() -> Any:
     return jsonify(renovar_access(current_user))
 
 
 @auth_api_bp.route("/logout", methods=["DELETE"])
-# TODO(segurança): precisa de token (access OU refresh) → @jwt_required(verify_type=False)
+@jwt_required(verify_type=False)
 def logout() -> Any:
-    return jsonify({"mensagem": "Logout fake (sem JWT e sem blocklist)."})
+    return jsonify(revogar_jwt_atual())
 
 
 @auth_api_bp.route("/eu", methods=["GET"])
-# TODO(segurança): rota protegida → @jwt_required()
+@jwt_required()
 def eu() -> Any:
-    return jsonify({"aviso": "Rota /eu aberta — qualquer um consulta. Proteja com @jwt_required()."})
+    return jsonify(current_user.para_dict())
 
 
 @auth_api_bp.route("/senha", methods=["POST"])
-# TODO(segurança): troca de senha exige token FRESH → @jwt_required(fresh=True)
+@jwt_required(fresh=True)
 def senha() -> Any:
     dados = _json()
     try:

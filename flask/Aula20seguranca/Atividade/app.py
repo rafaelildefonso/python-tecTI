@@ -103,15 +103,10 @@ def criar_app() -> Flask:
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SECRET_KEY"] = "aula20-torre-jwt-dev"
 
-    # ATIVIDADE: esta config está INSEGURA de propósito. Arrume.
-    # TODO(segurança): chave fraca — qualquer um forja JWT. Use um segredo forte (e não commite).
-    app.config["JWT_SECRET_KEY"] = "123"
-    # TODO(segurança): access não pode valer 1 ano. Na aula era 15 minutos.
-    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days=365)
-    # TODO(segurança): refresh longo demais para exercício em sala.
-    app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=365)
-    # TODO(segurança): token na query string vaza em log/histórico. Use ["headers"].
-    app.config["JWT_TOKEN_LOCATION"] = ["query_string"]
+    app.config["JWT_SECRET_KEY"] = "sua_chave_secreta_muito_forte_e_aleatoria_aqui"
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=15)
+    app.config["JWT_REFRESH_TOKEN_EXPIRES"] = timedelta(days=1)
+    app.config["JWT_TOKEN_LOCATION"] = ["headers"]
     app.config["JWT_HEADER_NAME"] = "Authorization"
     app.config["JWT_HEADER_TYPE"] = "Bearer"
 
