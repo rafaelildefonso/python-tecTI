@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block titulo %}Editar Tarefa{% endblock %}
+
+{% block conteudo %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <i class="bi bi-pencil"></i> Editar Tarefa
+      </div>
+      <div class="card-body">
+        <form method="post">
+          <div class="mb-3">
+            <label for="titulo" class="form-label">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo"
+                   maxlength="120" value="{{ tarefa.titulo }}" required autofocus>
+          </div>
+          <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea class="form-control" id="descricao" name="descricao" rows="4"
+                      maxlength="500">{{ tarefa.descricao }}</textarea>
+          </div>
+          <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" name="status">
+              <option value="pendente" {% if tarefa.status == 'pendente' %}selected{% endif %}>Pendente</option>
+              <option value="em andamento" {% if tarefa.status == 'em andamento' %}selected{% endif %}>Em andamento</option>
+              <option value="concluida" {% if tarefa.status == 'concluida' %}selected{% endif %}>Concluída</option>
+            </select>
+          </div>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-check-lg"></i> Salvar
+            </button>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancelar</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
